@@ -6,23 +6,22 @@ import (
 	"github.com/cars-owners-service/internal/web/requests"
 	"github.com/cars-owners-service/internal/web/responses"
 	"github.com/cars-owners-service/internal/web/utils/convert"
-	"github.com/cars-owners-service/resources"
 	"net/http"
 )
 
-func GetCars(w http.ResponseWriter, r *http.Request) {
+func GetCarsCsv(w http.ResponseWriter, r *http.Request) {
 	log := ctx.Log(r)
 
 	req, err := requests.NewGetCarsRequest(r)
 	if err != nil {
-		log.WithError(err).Error("failed to get search ownerships request")
+		log.WithError(err).Error("failed to get search cars request")
 		render.InternalServerError[*responses.EmptyMetaResponse](w, nil)
 		return
 	}
 
 	provider := ctx.Provider(r)
 
-	ownerships, err := provider.CarProvider().
+	cars, err := provider.CarProvider().
 		Paginate(convert.FromResponsePage(req.PaginationParams)).
 		Search(convert.FromResponseSearchCars(req.SearchCarsParams)).
 		Filter(convert.FromResponseFilterCars(req.FilterParams)).
@@ -33,12 +32,5 @@ func GetCars(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	render.Respond[*resources.OwnershipCarsGet200ResponseData, *responses.EmptyMetaResponse](
-		w,
-		resources.NewStatus(http.StatusOK, "Request result ok"),
-		&resources.OwnershipCarsGet200ResponseData{
-			Cars: convert.ToResponseOwnership(ownerships),
-		},
-		nil,
-	)
+	render.File(w, cars)
 }

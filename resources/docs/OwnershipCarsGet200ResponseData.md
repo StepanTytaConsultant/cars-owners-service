@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cars** | Pointer to [**[]Car**](Car.md) |  | [optional] 
+**Cars** | Pointer to [**[]Ownership**](Ownership.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCars
 
-`func (o *OwnershipCarsGet200ResponseData) GetCars() []Car`
+`func (o *OwnershipCarsGet200ResponseData) GetCars() []Ownership`
 
 GetCars returns the Cars field if non-nil, zero value otherwise.
 
 ### GetCarsOk
 
-`func (o *OwnershipCarsGet200ResponseData) GetCarsOk() (*[]Car, bool)`
+`func (o *OwnershipCarsGet200ResponseData) GetCarsOk() (*[]Ownership, bool)`
 
 GetCarsOk returns a tuple with the Cars field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCars
 
-`func (o *OwnershipCarsGet200ResponseData) SetCars(v []Car)`
+`func (o *OwnershipCarsGet200ResponseData) SetCars(v []Ownership)`
 
 SetCars sets Cars field to given value.
 

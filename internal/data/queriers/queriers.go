@@ -7,7 +7,7 @@ type CarProvider interface {
 	Paginate(page model.Page) CarProvider
 	Search(search model.SearchCarsParams) CarProvider
 	Filter(filter model.FilterParams) CarProvider
-	Run() ([]model.Car, error)
+	Run() ([]model.Ownership, error)
 }
 
 type OwnerProvider interface {

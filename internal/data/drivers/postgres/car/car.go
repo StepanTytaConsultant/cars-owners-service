@@ -16,6 +16,14 @@ const Car = "car"
 
 var _ queriers.CarProvider = &carProvider{}
 
+var carFields = []string{
+	"id", "car_manufactur", "car_model", "car_model_year",
+}
+
+var ownerFields = []string{
+	"first_name", "last_name", "gender", "address",
+}
+
 type carProvider struct {
 	log *logrus.Entry
 	db  *gorm.DB
@@ -62,9 +70,19 @@ func (o carProvider) Filter(filter model.FilterParams) queriers.CarProvider {
 	return o
 }
 
-func (o carProvider) Run() ([]model.Car, error) {
-	var out []model.Car
-	if err := o.db.Joins("LEFT JOIN owner on owner.id = car.owner_id").Model(&model.Car{}).Find(&out).Error; err != nil {
+func (o carProvider) Run() ([]model.Ownership, error) {
+	prependOwnerFields := make([]string, len(ownerFields))
+	for i, f := range ownerFields {
+		prependOwnerFields[i] = fmt.Sprintf("owner.%s", f)
+	}
+
+	prependCarFields := make([]string, len(carFields))
+	for i, f := range carFields {
+		prependCarFields[i] = fmt.Sprintf("car.%s", f)
+	}
+
+	var out []model.Ownership
+	if err := o.db.Select(append(prependCarFields, prependOwnerFields...)).Table("car").Joins("LEFT JOIN owner on owner.id = car.owner_id").Find(&out).Error; err != nil {
 		return nil, errors.Wrap(err, "failed to run query")
 	}
 	return out, nil

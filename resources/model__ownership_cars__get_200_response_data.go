@@ -16,7 +16,7 @@ import (
 
 // OwnershipCarsGet200ResponseData struct for OwnershipCarsGet200ResponseData
 type OwnershipCarsGet200ResponseData struct {
-	Cars []Car `json:"cars,omitempty"`
+	Cars []Ownership `json:"cars,omitempty"`
 }
 
 // NewOwnershipCarsGet200ResponseData instantiates a new OwnershipCarsGet200ResponseData object
@@ -37,9 +37,9 @@ func NewOwnershipCarsGet200ResponseDataWithDefaults() *OwnershipCarsGet200Respon
 }
 
 // GetCars returns the Cars field value if set, zero value otherwise.
-func (o *OwnershipCarsGet200ResponseData) GetCars() []Car {
+func (o *OwnershipCarsGet200ResponseData) GetCars() []Ownership {
 	if o == nil || o.Cars == nil {
-		var ret []Car
+		var ret []Ownership
 		return ret
 	}
 	return o.Cars
@@ -47,7 +47,7 @@ func (o *OwnershipCarsGet200ResponseData) GetCars() []Car {
 
 // GetCarsOk returns a tuple with the Cars field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OwnershipCarsGet200ResponseData) GetCarsOk() ([]Car, bool) {
+func (o *OwnershipCarsGet200ResponseData) GetCarsOk() ([]Ownership, bool) {
 	if o == nil || o.Cars == nil {
 		return nil, false
 	}
@@ -63,8 +63,8 @@ func (o *OwnershipCarsGet200ResponseData) HasCars() bool {
 	return false
 }
 
-// SetCars gets a reference to the given []Car and assigns it to the Cars field.
-func (o *OwnershipCarsGet200ResponseData) SetCars(v []Car) {
+// SetCars gets a reference to the given []Ownership and assigns it to the Cars field.
+func (o *OwnershipCarsGet200ResponseData) SetCars(v []Ownership) {
 	o.Cars = v
 }
 

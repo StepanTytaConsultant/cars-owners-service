@@ -1,0 +1,10 @@
+log_level: debug
+address: :8080
+database:
+  driver: postgres
+  host: localhost
+  user: postgres
+  password: postgres
+  name: postgres
+  port: 6060
+  ssl_mode: disable

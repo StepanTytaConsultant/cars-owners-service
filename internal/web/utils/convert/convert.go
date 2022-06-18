@@ -107,6 +107,24 @@ func ToResponseCars(cars []model.Car) []resources.Car {
 	return responseCars
 }
 
+func ToResponseOwnership(ownerships []model.Ownership) []resources.Ownership {
+	responseCars := make([]resources.Ownership, len(ownerships))
+	for i, ownership := range ownerships {
+		responseCars[i] = resources.Ownership{
+			Id:            ownership.ID,
+			FirstName:     ownership.FirstName,
+			LastName:      ownership.LastName,
+			Email:         ownership.Email,
+			Gender:        ownership.Gender,
+			Address:       ownership.Address,
+			CarManufactur: ownership.CarManufactur,
+			CarModel:      ownership.CarModel,
+			CarModelYear:  ownership.CarModelYear,
+		}
+	}
+	return responseCars
+}
+
 func StringPtr(s string) *string {
 	return &s
 }

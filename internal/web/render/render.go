@@ -7,6 +7,7 @@ import (
 
 	"github.com/cars-owners-service/internal/web/responses"
 	"github.com/cars-owners-service/resources"
+	"github.com/gocarina/gocsv"
 )
 
 // Respond valid json respond rendering
@@ -42,5 +43,12 @@ func Error[M json.Marshaler](w http.ResponseWriter, error *resources.Error, serv
 	err := json.NewEncoder(w).Encode(res)
 	if err != nil {
 		panic(errors.Wrap(err, "failed to encode json"))
+	}
+}
+
+func File(w http.ResponseWriter, in interface{}) {
+	w.Header().Add("Content-Disposition", `attachment; filename="cars.csv"`)
+	if err := gocsv.Marshal(in, w); err != nil {
+		panic("failed to marshal csv")
 	}
 }

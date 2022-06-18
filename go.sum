@@ -102,6 +102,8 @@ github.com/gobuffalo/packd v1.0.1 h1:U2wXfRr4E9DH8IdsDLlRFwTZTK7hLfq9qT/QHXGVe/0
 github.com/gobuffalo/packd v1.0.1/go.mod h1:PP2POP3p3RXGz7Jh6eYEf93S7vA2za6xM7QT85L4+VY=
 github.com/gobuffalo/packr/v2 v2.8.3 h1:xE1yzvnO56cUC0sTpKR3DIbxZgB54AftTFMhB2XEWlY=
 github.com/gobuffalo/packr/v2 v2.8.3/go.mod h1:0SahksCVcx4IMnigTjiFuyldmTrdTctXsOdiU5KwbKc=
+github.com/gocarina/gocsv v0.0.0-20220531201732-5f969b02b902 h1:MQpU1uHOSGIbSibiJ246ZUPToUDUT+HBY6Y4lQTVyII=
+github.com/gocarina/gocsv v0.0.0-20220531201732-5f969b02b902/go.mod h1:5YoVOkjYAQumqlV356Hj3xeYh4BdZuLE0/nRkf2NKkI=
 github.com/godbus/dbus/v5 v5.0.4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
 github.com/godror/godror v0.24.2/go.mod h1:wZv/9vPiUib6tkoDl+AZ/QLf5YZgMravZ7jxH2eQWAE=
 github.com/gofrs/uuid v4.0.0+incompatible h1:1SD/1F5pU8p29ybwgQSwpQk+mwdRrXCYuPhW6m+TnJw=

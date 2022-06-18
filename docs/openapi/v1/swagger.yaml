@@ -133,7 +133,61 @@ paths:
                       cars:
                         type: array
                         items:
-                          $ref: '#/components/schemas/Car'
+                          $ref: '#/components/schemas/Ownership'
+        '500':
+          description: Something is wrong on the server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    $ref: '#/components/schemas/Error'
+  /ownership/cars/csv:
+    get:
+      parameters:
+        - in: query
+          name: page[offset]
+          schema:
+            type: integer
+          description: The number of items to skip before starting to collect the result set
+        - in: query
+          name: page[limit]
+          schema:
+            type: integer
+          description: The numbers of items to return
+        - in: query
+          name: search[first_name]
+          schema:
+            type: string
+            example: 'Jon'
+          description: First name of a person to return cars for
+        - in: query
+          name: search[last_name]
+          schema:
+            type: string
+            example: 'Doe'
+          description: Last name of a person to return cars for
+        - in: query
+          name: filter[car_manufactur]
+          schema:
+            type: string
+            example: 'Lexus'
+          description: Car manufacturer to filter by
+        - in: query
+          name: filter[city]
+          schema:
+            type: string
+            example: 'Krzczonow'
+          description: City to filter by
+      responses:
+        '200':
+          description: A CSV export data
+          content:
+            application/csv:
+              schema:
+                type: string
+                format: binary
         '500':
           description: Something is wrong on the server
           content:

@@ -102,17 +102,6 @@ func setField(v reflect.Value, values []string) error {
 	return errors.New("field is invalid, and cannot be set")
 }
 
-func newAlloc(t string) interface{} {
-	if strings.HasSuffix(t, "int32") {
-		return new(int32)
-	} else if strings.HasSuffix(t, "int64") {
-		return new(int64)
-	} else if strings.HasSuffix(t, "string") {
-		return new(string)
-	}
-	return nil
-}
-
 func findField(t reflect.Type, tagName, key string) string {
 	for i := 0; i < t.NumField(); i++ {
 		field := t.Field(i)
