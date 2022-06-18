@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Cars owners API
+  description: This is a REST API of the Cars owners App.
+  version: 0.0.1-beta1
+servers:
+  - url: http://api.cars-owners.com.ua/v1
+    description: Main (production) listener
+  - url: http://dev.api.cars-owners.com.ua
+    description: Test (development) listener
+paths:
+  /healthcheck:
+    get:
+      summary: Returns success if listener runs successfully.
+      responses:
+        '200':  # status code
+          description: A JSON object with healthcheck result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+        '500':
+          description: A JSON object with healthcheck result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Status:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+          example: 200
+        message:
+          type: string
+          example: 'Server runs successfully'
+    Error:
+      type: object
+      required:
+        - code
+        - error
+      properties:
+        code:
+          type: integer
+          format: int32
+          example: 500
+        error:
+          type: string
+          example: 'Server is dead'
