@@ -41,10 +41,11 @@ func (c envDatabaseConfig) toPSQLPath() string {
 func NewDatabaser(conn, driver string) Databaser {
 
 	var sess *gorm.DB
+	var err error
 
 	switch driver {
 	case PostgresDriver:
-		sess, err := gorm.Open(postgres.Open(conn), &gorm.Config{})
+		sess, err = gorm.Open(postgres.Open(conn), &gorm.Config{})
 		if err != nil {
 			panic(errors.Wrapf(err, "failed to open database connection: %s", conn))
 		}

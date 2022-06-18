@@ -25,6 +25,62 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /ownership/add:
+    post:
+      summary: Add a new ownership
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Ownership'
+      responses:
+        '201':
+          description: Created successfully status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  data:
+                    type: object
+                    properties:
+                      owners:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Owner'
+                      cars:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Car'
+        '400':
+          description: Something is wrong with the data provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    $ref: '#/components/schemas/Error'
+        '500':
+          description: Something is wrong on the server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    $ref: '#/components/schemas/Error'
+
 components:
   schemas:
     Status:
@@ -53,3 +109,88 @@ components:
         error:
           type: string
           example: 'Server is dead'
+    Ownership:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        first_name:
+          type: string
+          example: 'Jon'
+        last_name:
+          type: string
+          example: 'Doe'
+        email:
+          type: string
+          example: 'jon.doe@example.com'
+        gender:
+          type: string
+          example: 'female'
+        address:
+          type: string
+          example: '395 Mandrake Crossing, Krzczonow'
+        car_manufactur:
+          type: string
+          example: 'Volvo'
+        car_model:
+          type: string
+          example: 'XC90'
+        car_model_year:
+          type: integer
+          format: int32
+          example: 2010
+    Car:
+      type: object
+      required:
+        - id
+        - owner_id
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        car_manufactur:
+          type: string
+          example: 'Volvo'
+        car_model:
+          type: string
+          example: 'XC90'
+        car_model_year:
+          type: integer
+          format: int32
+          example: 2010
+        owner_id:
+          type: integer
+          format: int64
+          example: 1
+    Owner:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        first_name:
+          type: string
+          example: 'Jon'
+        last_name:
+          type: string
+          example: 'Doe'
+        email:
+          type: string
+          example: 'jon.doe@example.com'
+        gender:
+          type: string
+          example: 'female'
+        address:
+          type: string
+          example: '395 Mandrake Crossing, Krzczonow'
+        city:
+          type: string
+          example: 'Krzczonow'

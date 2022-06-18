@@ -1,5 +1,5 @@
 package postgres
 
 const (
-	Postgres = "querier"
+	Querier = "postgres"
 )
