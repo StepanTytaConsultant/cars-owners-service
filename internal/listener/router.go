@@ -24,4 +24,5 @@ func (l *service) setupRouter() {
 
 	l.router.Get("/healthcheck", handlers.GetHealthcheck)
 	l.router.Post("/ownership/add", handlers.PostOwnership)
+	l.router.Get("/ownership/cars", handlers.GetCars)
 }

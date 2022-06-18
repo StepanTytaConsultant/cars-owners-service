@@ -2,6 +2,8 @@ package convert
 
 import (
 	"github.com/cars-owners-service/internal/data/model"
+	"github.com/cars-owners-service/internal/web/urlvals"
+	"github.com/cars-owners-service/internal/web/utils"
 	"github.com/cars-owners-service/resources"
 	"strings"
 )
@@ -107,4 +109,36 @@ func ToResponseCars(cars []model.Car) []resources.Car {
 
 func StringPtr(s string) *string {
 	return &s
+}
+
+func FromInt32Ptr(v *int32) int32 {
+	if v == nil {
+		return 0
+	}
+	return *v
+}
+
+func FromResponsePage(params urlvals.PaginationParams) model.Page {
+	limit := utils.DefaultLimit
+	if params.Limit != nil {
+		limit = int(FromInt32Ptr(params.Limit))
+	}
+	return model.Page{
+		Limit:  limit,
+		Offset: int(FromInt32Ptr(params.Offset)),
+	}
+}
+
+func FromResponseSearchCars(params urlvals.SearchCarsParams) model.SearchCarsParams {
+	return model.SearchCarsParams{
+		FirstName: params.FirstName,
+		LastName:  params.LastName,
+	}
+}
+
+func FromResponseFilterCars(params urlvals.FilterParams) model.FilterParams {
+	return model.FilterParams{
+		CarManufactur: params.CarManufactur,
+		City:          params.City,
+	}
 }
